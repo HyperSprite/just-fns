@@ -6,17 +6,15 @@
   "scripts": {
     "test": "jest",
     "test-src": "jest src/test.js --watch",
-    "lint": "eslint",
+    "lint": "eslint .",
     "build": "babel src --out-dir dst"
   },
-  "pre-commit": [
+  "precommit": [
     "lint",
-    "build",
     "test"
   ],
   "eslintConfig": {
     "extends": "airbnb",
-    "parser": "babel-eslint",
     "env": {
       "browser": true,
       "node": true,

@@ -3,7 +3,12 @@ var justFns = require('./index');
 
 var adjustedElev500 = 0.500 - 24.55533409118652 * 0.01;
 var adjustedElev6000 = 6.000 - 24.55533409118652 * 0.01;
-var arrOfObj = [{ weight: 63, ftp: 250, elapsed_time: 7200, weighted_average_watts: 240, tssScore: null }, { weight: 63.1, ftp: 251, elapsed_time: 39719, weighted_average_watts: 168, tssScore: null }, { weight: 63.2, ftp: 252, elapsed_time: 35547, weighted_average_watts: 156, tssScore: null }, { weight: 63.3, ftp: 253, elapsed_time: 29377, weighted_average_watts: 205, tssScore: null }, { weight: 63.4, ftp: 254, elapsed_time: 11685, weighted_average_watts: 207, tssScore: null }, { weight: 63.5, ftp: 255, elapsed_time: 3521, weighted_average_watts: 227, tssScore: null }];
+var arrOfObj = [{ weight: 63, ftp: 250, et: 7200, waw: 240, tss: 184.32 }, // eslint-disable-line object-curly-newline
+{ weight: 63.1, ftp: 251, et: 39719, waw: 168, tss: 494.2730432850272 }, // eslint-disable-line object-curly-newline
+{ weight: 63.2, ftp: 252, et: 35547, waw: 156, tss: 378 }, // eslint-disable-line object-curly-newline
+{ weight: 63.3, ftp: 253, et: 29377, waw: 205, tss: 535.76 }, // eslint-disable-line object-curly-newline
+{ weight: 63.4, ftp: 254, et: 11685, waw: 207, tss: null }, // eslint-disable-line object-curly-newline
+{ weight: 63.5, ftp: 255, et: 3521, waw: 227, tss: null }];
 
 describe('round number to X place', function () {
   test('1.5 - returns 2', function () {
@@ -190,20 +195,20 @@ describe('percentFTPNAcc', function () {
 });
 
 describe('calcTssScore', function () {
-  test('(arrOfObj[0].elapsed_time, arrOfObj[0].weighted_average_watts arrOfObj[0].ftp) - (user elevation of 25) ', function () {
-    expect(justFns.calcTssScore(arrOfObj[0].elapsed_time, arrOfObj[0].weighted_average_watts, arrOfObj[0].ftp)).toEqual(184.32);
+  test('(arrOfObj[0].et, arrOfObj[0].waw arrOfObj[0].ftp) - (user elevation of 25) ', function () {
+    expect(justFns.calcTssScore(arrOfObj[0].et, arrOfObj[0].waw, arrOfObj[0].ftp)).toEqual(arrOfObj[0].tss);
   });
-  test('(justFns.calcTssScore(arrOfObj[1].elapsed_time, arrOfObj[1].weighted_average_watts, arrOfObj[1].ftp) (user elevation of 25) ', function () {
-    expect(justFns.calcTssScore(arrOfObj[1].elapsed_time, arrOfObj[1].weighted_average_watts, arrOfObj[1].ftp)).toEqual(494.2730432850272);
+  test('(justFns.calcTssScore(arrOfObj[1].et, arrOfObj[1].waw, arrOfObj[1].ftp) (user elevation of 25) ', function () {
+    expect(justFns.calcTssScore(arrOfObj[1].et, arrOfObj[1].waw, arrOfObj[1].ftp)).toEqual(arrOfObj[1].tss);
   });
 });
 
 describe('calcTssScoreRound', function () {
-  test('(arrOfObj[0].elapsed_time, arrOfObj[0].weighted_average_watts arrOfObj[0].ftp) - defaults to 0 places > 184', function () {
-    expect(justFns.calcTssScoreRound(arrOfObj[0].elapsed_time, arrOfObj[0].weighted_average_watts, arrOfObj[0].ftp)).toEqual(184);
+  test('(arrOfObj[2].et, arrOfObj[2].waw arrOfObj[2].ftp) - defaults to 0 places > 184', function () {
+    expect(justFns.calcTssScoreRound(arrOfObj[2].et, arrOfObj[2].waw, arrOfObj[2].ftp)).toEqual(arrOfObj[2].tss);
   });
-  test('(arrOfObj[1].elapsed_time, arrOfObj[1].weighted_average_watts, arrOfObj[1].ftp, 2) - set to 2 places > 494.27', function () {
-    expect(justFns.calcTssScoreRound(arrOfObj[1].elapsed_time, arrOfObj[1].weighted_average_watts, arrOfObj[1].ftp, 2)).toEqual(494.27);
+  test('(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2) - set to 2 places > 494.27', function () {
+    expect(justFns.calcTssScoreRound(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2)).toEqual(arrOfObj[3].tss);
   });
 });
 

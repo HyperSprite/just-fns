@@ -6,7 +6,7 @@ const round = (val, place = 0) => Number(Math.round(val + `e${place}`) + `e-${pl
 
 const isValid = (val, type) => {
   switch (type) {
-    case 's' :
+    case 's':
       return typeof val === 'string';
     default:
       return Number.isFinite(val);
@@ -140,12 +140,12 @@ const mPrefLabel = (metric, mPref) => {
         { display: 'm', help: 'Meters' };
     case ('dstL'):
       return mPref ?
-          { display: 'mi', help: 'Miles' } :
-          { display: 'km', help: 'Kilometers' };
+        { display: 'mi', help: 'Miles' } :
+        { display: 'km', help: 'Kilometers' };
     case ('temp'):
       return mPref ?
-          { display: '°F', help: 'Fahrenheit' } :
-          { display: '°C', help: 'Celsius' };
+        { display: '°F', help: 'Fahrenheit' } :
+        { display: '°C', help: 'Celsius' };
     default:
       return mPref ?
         { display: 'Imperial', help: '' } :

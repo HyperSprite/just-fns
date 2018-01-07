@@ -88,7 +88,6 @@ var mpsToMPHRound = function mpsToMPHRound(m, p) {
 *
 */
 var difficultyIndex = function difficultyIndex(totalEleGain, distance) {
-  // eslint-disable-line
   return round(divideAndRound(totalEleGain, distance, 6) * 200, 2);
 };
 
