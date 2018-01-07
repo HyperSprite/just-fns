@@ -4,28 +4,49 @@ This is a collection of functions for performing various calculations. Mostly ha
 
 They are as follows:
 
-round(number: Number, places: Number): returns a number rounded to 'places'
+### round(number: Number, places: Number)
+Returns a number rounded to places
 ```js
-round(1.535, 2) // returns 1.54
+round(1.535, 2); // returns 1.54
 ```
 
 
-secondsToTime(seconds: Number): returns seconds as Days, Hours and Minutes
+### secondsToTime(seconds: Number)
+Returns seconds as Days, Hours and Minutes
 ```js
-secondsToTime(5847708) // returns 67 days 16:21
+secondsToTime(5847708); // returns 67 days 16:21
 ```
 
-kgToPounds(kilograms: Number): returns Lbs from a number of Kilograms
+### getLastInArray(arrOfObj: Array, key_name: String)
+Takes an array of objects and returns the last value of the key_name from the last element.
 ```js
-kgToPounds(8) // returns 17.63696
+const arr = [
+  { weight: 160, age: 27 },
+  { weight: 165, age: 28 },
+  { weight: 168, age: 29 },
+];
+
+getLastInArray(arr, 'weight'); // returns 168
 ```
 
-> \* includes Round option. Functions that include the Round options work as follows:
+### divideAndRound(dividend: Number, divisor: Number, places: Number)
+Takes two numbers and divides and rounds the result
 ```js
-kgToPoundsRound(8, 3) // returns 17.637
+divideAndRound(190, 240, 2); // returns 0.79
 ```
 
-These work in a similar way and have the Round option.
+### One Measurement to Another Measurement
+
+Example:
+#### kgToPounds(kilograms: Number)
+Returns Lbs from a number of Kilograms. These also include round options
+```js
+kgToPounds(8); // returns 17.63696
+kgToPoundsRound(8, 3); // returns 17.637
+kgToPoundsRound(8); // returns 18
+```
+
+These include:
 * kgToPounds - Kilograms to Pounds
 * metersToFeet - Meters to Feet
 * metersToMiles - Meters to Miles
@@ -34,16 +55,12 @@ These work in a similar way and have the Round option.
 * mpsToMPH - Meters per second to Miles per hour
 
 
-divideAndRound(dividend: Number, divisor: Number, places: Number) - Takes two numbers and divides them and rounds the result
-```js
-divideAndRound(190, 240, 2) // returns 0.79
-```
-
 Specialized functions: See code comments and test for better understanding
+> TODO Add detailed description of these functions
 
 * percentFTPAcc
 * percentFTPNAcc
+* calcTssScore
+* calcTssScoreRound
 * statsConversions
 * mPrefLabel
-* getLastInArray
-`

@@ -1,15 +1,15 @@
-// Use: jest test.js --watch
+// Use: jest test --watch
 const justFns = require('./index');
 
 const adjustedElev500 = 0.500 - (24.55533409118652 * 0.01);
 const adjustedElev6000 = 6.000 - (24.55533409118652 * 0.01);
 const arrOfObj = [
-  { weight: 63, ftp: 250 },
-  { weight: 63.1, ftp: 251 },
-  { weight: 63.2, ftp: 252 },
-  { weight: 63.3, ftp: 253 },
-  { weight: 63.4, ftp: 254 },
-  { weight: 63.5, ftp: 255 },
+  { weight: 63, ftp: 250, elapsed_time: 7200, weighted_average_watts: 240, tssScore: null },
+  { weight: 63.1, ftp: 251, elapsed_time: 39719, weighted_average_watts: 168, tssScore: null },
+  { weight: 63.2, ftp: 252, elapsed_time: 35547, weighted_average_watts: 156, tssScore: null },
+  { weight: 63.3, ftp: 253, elapsed_time: 29377, weighted_average_watts: 205, tssScore: null },
+  { weight: 63.4, ftp: 254, elapsed_time: 11685, weighted_average_watts: 207, tssScore: null },
+  { weight: 63.5, ftp: 255, elapsed_time: 3521, weighted_average_watts: 227, tssScore: null },
 ]
 
 describe('round number to X place', () => {
@@ -70,6 +70,42 @@ describe('secondsToTime takes unix seconds and returns H:mm', () => {
   });
   test('35005 to 9:43', () => {
     expect(justFns.secondsToTime(35005)).toEqual('9:43');
+  });
+});
+
+describe('getLastInArray', () => {
+  test('arrOfObj weight to 63.5', () => {
+    expect(justFns.getLastInArray(arrOfObj, 'weight')).toEqual(63.5);
+  });
+  test('arrOfObj ftp to 255', () => {
+    expect(justFns.getLastInArray(arrOfObj, 'ftp')).toEqual(255);
+  });
+});
+
+describe('divideAndRound', () => {
+  test('240, 190, 2 to ', () => {
+    expect(justFns.divideAndRound(240, 190, 2)).toEqual(1.26);
+  });
+  test('240, 190, 4 to ', () => {
+    expect(justFns.divideAndRound(240, 190, 4)).toEqual(1.2632);
+  });
+  test('190, 240, 2 to ', () => {
+    expect(justFns.divideAndRound(190, 240, 2)).toEqual(0.79);
+  });
+  test('190, 240, 4 to ', () => {
+    expect(justFns.divideAndRound(190, 240, 4)).toEqual(0.7917);
+  });
+  test('24035, 190, 2 to ', () => {
+    expect(justFns.divideAndRound(240, 190, 1)).toEqual(1.3);
+  });
+  test('12345, 24 - no rounding arg', () => {
+    expect(justFns.divideAndRound(12345, 24)).toEqual(514);
+  });
+  test('12345, 0', () => {
+    expect(justFns.divideAndRound(12345, 0)).toEqual(0);
+  });
+  test('0, 25', () => {
+    expect(justFns.divideAndRound(0, 25)).toEqual(0);
   });
 });
 
@@ -142,33 +178,6 @@ describe('metersToKmRound', () => {
   });
 });
 
-describe('divideAndRound', () => {
-  test('240, 190, 2 to ', () => {
-    expect(justFns.divideAndRound(240, 190, 2)).toEqual(1.26);
-  });
-  test('240, 190, 4 to ', () => {
-    expect(justFns.divideAndRound(240, 190, 4)).toEqual(1.2632);
-  });
-  test('190, 240, 2 to ', () => {
-    expect(justFns.divideAndRound(190, 240, 2)).toEqual(0.79);
-  });
-  test('190, 240, 4 to ', () => {
-    expect(justFns.divideAndRound(190, 240, 4)).toEqual(0.7917);
-  });
-  test('24035, 190, 2 to ', () => {
-    expect(justFns.divideAndRound(240, 190, 1)).toEqual(1.3);
-  });
-  test('12345, 24 - no rounding arg', () => {
-    expect(justFns.divideAndRound(12345, 24)).toEqual(514);
-  });
-  test('12345, 0', () => {
-    expect(justFns.divideAndRound(12345, 0)).toEqual(0);
-  });
-  test('0, 25', () => {
-    expect(justFns.divideAndRound(0, 25)).toEqual(0);
-  });
-});
-
 describe('percentFTPAcc', () => {
   test('250 elv - (user elevation of 25) ', () => {
     expect(justFns.percentFTPAcc(adjustedElev500)).toEqual(99.3440390731329);
@@ -184,6 +193,24 @@ describe('percentFTPNAcc', () => {
   });
   test('6000 elv - (user elevation of 25) ', () => {
     expect(justFns.percentFTPNAcc(adjustedElev6000)).toEqual(63.14491042539609);
+  });
+});
+
+describe('calcTssScore', () => {
+  test('(arrOfObj[0].elapsed_time, arrOfObj[0].weighted_average_watts arrOfObj[0].ftp) - (user elevation of 25) ', () => {
+    expect(justFns.calcTssScore(arrOfObj[0].elapsed_time, arrOfObj[0].weighted_average_watts, arrOfObj[0].ftp)).toEqual(184.32);
+  });
+  test('(justFns.calcTssScore(arrOfObj[1].elapsed_time, arrOfObj[1].weighted_average_watts, arrOfObj[1].ftp) (user elevation of 25) ', () => {
+    expect(justFns.calcTssScore(arrOfObj[1].elapsed_time, arrOfObj[1].weighted_average_watts, arrOfObj[1].ftp)).toEqual(494.2730432850272);
+  });
+});
+
+describe('calcTssScoreRound', () => {
+  test('(arrOfObj[0].elapsed_time, arrOfObj[0].weighted_average_watts arrOfObj[0].ftp) - defaults to 0 places > 184', () => {
+    expect(justFns.calcTssScoreRound(arrOfObj[0].elapsed_time, arrOfObj[0].weighted_average_watts, arrOfObj[0].ftp)).toEqual(184);
+  });
+  test('(arrOfObj[1].elapsed_time, arrOfObj[1].weighted_average_watts, arrOfObj[1].ftp, 2) - set to 2 places > 494.27', () => {
+    expect(justFns.calcTssScoreRound(arrOfObj[1].elapsed_time, arrOfObj[1].weighted_average_watts, arrOfObj[1].ftp, 2)).toEqual(494.27);
   });
 });
 
@@ -266,14 +293,5 @@ describe('mPrefLabel', () => {
   });
   test('null, true', () => {
     expect(JSON.stringify(justFns.mPrefLabel(null, true))).toEqual(JSON.stringify({ display: 'Imperial', help: '' }));
-  });
-});
-
-describe('getLastInArray', () => {
-  test('arrOfObj weight to 63.5', () => {
-    expect(justFns.getLastInArray(arrOfObj, 'weight')).toEqual(63.5);
-  });
-  test('arrOfObj ftp to 255', () => {
-    expect(justFns.getLastInArray(arrOfObj, 'ftp')).toEqual(255);
   });
 });

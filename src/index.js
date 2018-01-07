@@ -1,4 +1,8 @@
-const round = (val, place = 0) => Number(Math.round(val + `e${place}`) + `e-${place}`);
+/**
+* General use functions
+*/
+
+const round = (val, place = 0) => Number(Math.round(val + `e${place}`) + `e-${place}`); // eslint-disable-line
 
 const isValid = (val, type) => {
   switch (type) {
@@ -17,18 +21,14 @@ const secondsToTime = (sec) => {
   return nDays ? `${nDays} days ${nHours}:${nMinutes}` : `${nHours}:${nMinutes}`;
 };
 
-const kgToPounds = kg => kg * 2.20462;
-const kgToPoundsRound = (kg, p) => round(kg * 2.20462, p);
-const metersToFeet = m => m * 3.28084;
-const metersToFeetRound = (m, p) => round(m * 3.28084, p);
-const metersToMiles = m => m * 0.00062137121212121;
-const metersToMilesRound = (m, p) => round(m * 0.00062137121212121, p);
-const metersToKm = m => m / 1000;
-const metersToKmRound = (m, p) => round(m / 1000, p);
-const mpsToKPH = m => m * 3.6;
-const mpsToKPHRound = (m, p) => round(m * 3.6, p);
-const mpsToMPH = m => m * 2.2369;
-const mpsToMPHRound = (m, p) => round(m * 2.2369, p);
+const getLastInArray = (arr, arrType) => {
+  let item;
+  if (arr && arr.length > 0 && arr[arr.length - 1][arrType] != null) {
+    item = arr[arr.length - 1][arrType];
+  }
+  return item;
+};
+
 const divideAndRound = (divideThis, byThis, p) => {
   if (!isValid(divideThis) || !isValid(byThis || !byThis)) {
     return 0;
@@ -36,7 +36,31 @@ const divideAndRound = (divideThis, byThis, p) => {
   return round(((divideThis * 1) / (byThis * 1)), p);
 };
 
-const difficultyIndex = (totalEleGain, distance) => {
+/**
+*
+* Measurement conversion functions
+*
+*/
+const kgToPounds = kg => kg * 2.20462;
+const metersToFeet = m => m * 3.28084;
+const metersToMiles = m => m * 0.00062137121212121;
+const metersToKm = m => m / 1000;
+const mpsToKPH = m => m * 3.6;
+const mpsToMPH = m => m * 2.2369;
+
+const kgToPoundsRound = (kg, p) => round(kgToPounds(kg), p);
+const metersToFeetRound = (m, p) => round(metersToFeet(m), p);
+const metersToMilesRound = (m, p) => round(metersToMiles(m), p);
+const metersToKmRound = (m, p) => round(metersToKm(m), p);
+const mpsToKPHRound = (m, p) => round(mpsToKPH(m), p);
+const mpsToMPHRound = (m, p) => round(mpsToMPH(m), p);
+
+/**
+*
+* Cycling stats specific functions
+*
+*/
+const difficultyIndex = (totalEleGain, distance) => { // eslint-disable-line
   return round(divideAndRound(totalEleGain, distance, 6) * 200, 2);
 };
 
@@ -45,8 +69,20 @@ const difficultyIndex = (totalEleGain, distance) => {
 * percentFTPNAcc takes (elevation - user.elevation * 0.01) and returns non acclimated power
 * e.g adjustedElev would be .500 - .025
 */
-const percentFTPAcc = adjustedElev => -1.12 * (Math.pow(adjustedElev, 2)) - 1.90 * adjustedElev + 99.9;
-const percentFTPNAcc = adjustedElev => 0.178 * (Math.pow(adjustedElev, 3)) - 1.43 * (Math.pow(adjustedElev, 2)) - (4.07 * adjustedElev) + 100;
+const percentFTPAcc = adjustedElev => -1.12 * (Math.pow(adjustedElev, 2)) - 1.90 * adjustedElev + 99.9; // eslint-disable-line
+const percentFTPNAcc = adjustedElev => 0.178 * (Math.pow(adjustedElev, 3)) - 1.43 * (Math.pow(adjustedElev, 2)) - (4.07 * adjustedElev) + 100; // eslint-disable-line
+
+/**
+* elapsed_time, weighted_average_watts, ftp
+*/
+const calcTssScore = (et, waw, ftp) => ((et * waw * (waw / ftp)) / (ftp * 3600)) * 100;
+const calcTssScoreRound = (et, waw, ftp, p) => round(calcTssScore(et, waw, ftp), p);
+
+/**
+*
+* Formatting functions
+*
+*/
 
 /**
 * metric = 'time', 'dst', 'elev', 'cal', 'kj' type: string
@@ -119,16 +155,11 @@ const mPrefLabel = (metric, mPref) => {
   }
 };
 
-const getLastInArray = (arr, arrType) => {
-  let item;
-  if (arr && arr.length > 0 && arr[arr.length - 1][arrType] != null) {
-    item = arr[arr.length - 1][arrType];
-  }
-  return item;
-};
-
 exports.round = round;
 exports.isValid = isValid;
+exports.getLastInArray = getLastInArray;
+exports.divideAndRound = divideAndRound;
+
 exports.secondsToTime = secondsToTime;
 exports.kgToPounds = kgToPounds;
 exports.kgToPoundsRound = kgToPoundsRound;
@@ -142,10 +173,12 @@ exports.mpsToKPH = mpsToKPH;
 exports.mpsToKPHRound = mpsToKPHRound;
 exports.mpsToMPH = mpsToMPH;
 exports.mpsToMPHRound = mpsToKPHRound;
-exports.divideAndRound = divideAndRound;
+
 exports.difficultyIndex = difficultyIndex;
 exports.percentFTPAcc = percentFTPAcc;
 exports.percentFTPNAcc = percentFTPNAcc;
+exports.calcTssScore = calcTssScore;
+exports.calcTssScoreRound = calcTssScoreRound;
+
 exports.statsConversions = statsConversions;
 exports.mPrefLabel = mPrefLabel;
-exports.getLastInArray = getLastInArray;

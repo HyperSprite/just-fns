@@ -1,18 +1,23 @@
 {
   "name": "just-fns",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Just functions",
-  "main": "index.js",
+  "main": "dst/index.js",
   "scripts": {
-    "test": "jest test.js"
+    "test": "jest",
+    "test-src":  "jest src/test.js --watch",
+    "build": "babel src --out-dir dst"
   },
   "keywords": [
     "measurement",
     "conversion"
   ],
   "author": "C. Dunavan",
+  "repository": "https://github.com/HyperSprite/just-fns",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "jest": "^22.0.4"
   }
 }
