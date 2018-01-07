@@ -60,9 +60,7 @@ const mpsToMPHRound = (m, p) => round(mpsToMPH(m), p);
 * Cycling stats specific functions
 *
 */
-const difficultyIndex = (totalEleGain, distance) => { // eslint-disable-line
-  return round(divideAndRound(totalEleGain, distance, 6) * 200, 2);
-};
+const difficultyIndex = (totalEleGain, distance) => round(divideAndRound(totalEleGain, distance, 6) * 200, 2);
 
 /**
 * percentFTPAcc takes (elevation - user.elevation * 0.01) and returns acclimated power
