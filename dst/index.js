@@ -138,6 +138,7 @@ var statsConversions = function statsConversions(metric, yAxis, data, mPref) {
         return mPref ? metersToFeetRound(data, 0) : round(data, 0);
       case 'cal':
       case 'kj':
+      case 'tss':
         return round(data, 0);
       default:
         return data;

@@ -249,6 +249,9 @@ describe('statsConversions', () => {
   test('kj, false, 1512.9352, false', () => {
     expect(justFns.statsConversions('kj', false, 1512.9352, false)).toEqual(1513);
   });
+  test('tss, false, 431.52489, false', () => {
+    expect(justFns.statsConversions('tss', false, 431.52489, false)).toEqual(432);
+  });
 });
 
 /**
