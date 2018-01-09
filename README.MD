@@ -76,7 +76,7 @@ secondsToTime(5847708); // returns 67 days 16:21
 These all work the same and the units seem self explanatory.
 For example ```kgToPounds``` returns Lbs from a number of Kilograms. These also include round options.
 #### ```kgToPounds(kilograms: Number)```
-#### ```kgToPoundsRound(kilograms: Number)```
+#### ```kgToPoundsRound(kilograms: Number, places: Number)```
 
 #### These include:
 
