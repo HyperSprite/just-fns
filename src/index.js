@@ -1,4 +1,5 @@
 const {
+  altitudeIndex,
   difficultyIndex,
   percentFTPAcc,
   percentFTPNAcc,
@@ -37,6 +38,7 @@ const {
 
 module.exports = {
   // lib/cycling
+  altitudeIndex,
   difficultyIndex,
   percentFTPAcc,
   percentFTPNAcc,

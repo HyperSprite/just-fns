@@ -10,6 +10,13 @@ const {
 */
 
 /**
+* altitudeIndex receives the target elevation and the user elevation in Meters and returns the Altidude Index
+* used in calculating Percentage of FTP at Altitude below.
+*/
+
+const altitudeIndex = (targetElev, userElev) => ((targetElev * 0.001) - (userElev * 0.01));
+
+/**
 * Difficulty Index
 */
 const difficultyIndex = (totalEleGain, distance) => round(divideAndRound(totalEleGain, distance, 6) * 200, 2);
@@ -19,8 +26,8 @@ const difficultyIndex = (totalEleGain, distance) => round(divideAndRound(totalEl
 * percentFTPNAcc takes (elevation - user.elevation * 0.01) and returns non acclimated power
 * e.g adjustedElev would be .500 - .025
 */
-const percentFTPAcc = adjustedElev => -1.12 * (Math.pow(adjustedElev, 2)) - 1.90 * adjustedElev + 99.9; // eslint-disable-line
-const percentFTPNAcc = adjustedElev => 0.178 * (Math.pow(adjustedElev, 3)) - 1.43 * (Math.pow(adjustedElev, 2)) - (4.07 * adjustedElev) + 100; // eslint-disable-line
+const percentFTPAcc = altiIndx => -1.12 * (Math.pow(altiIndx, 2)) - 1.90 * altiIndx + 99.9; // eslint-disable-line
+const percentFTPNAcc = altiIndx => 0.178 * (Math.pow(altiIndx, 3)) - 1.43 * (Math.pow(altiIndx, 2)) - (4.07 * altiIndx) + 100; // eslint-disable-line
 
 /**
 * elapsed_time, weighted_average_watts, ftp
@@ -29,6 +36,7 @@ const calcTssScore = (et, waw, ftp) => ((et * waw * (waw / ftp)) / (ftp * 3600))
 const calcTssScoreRound = (et, waw, ftp, p) => round(calcTssScore(et, waw, ftp), p);
 
 module.exports = {
+  altitudeIndex,
   calcTssScore,
   calcTssScoreRound,
   difficultyIndex,

@@ -5,6 +5,9 @@ const {
   adjustedElev500,
   arrA,
   arrOfObj,
+  userElv,
+  targetElvA,
+  targetElvB,
 } = require('./lib/vars');
 
 describe('round number to X place', () => {
@@ -114,6 +117,15 @@ describe('percentFTPAcc', () => {
 describe('percentFTPNAcc', () => {
   test('250 elv - (user elevation of 25) ', () => {
     expect(justFns.percentFTPNAcc(adjustedElev500)).toEqual(98.87475177375516);
+  });
+});
+
+describe('Combined: altitudeIndex and percentFTPAcc', () => {
+  test('(targetElvA, userElv) - 99.34452477', () => {
+    expect(justFns.percentFTPAcc(justFns.altitudeIndex(targetElvA, userElv))).toEqual(99.34452477);
+  });
+  test('(targetElvB, userElv) - 63.14546998894553', () => {
+    expect(justFns.percentFTPNAcc(justFns.altitudeIndex(targetElvB, userElv))).toEqual(63.14546998894553);
   });
 });
 

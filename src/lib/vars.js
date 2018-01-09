@@ -66,6 +66,9 @@ const arrOfObj = [
     diffI: 0,
   },
 ];
+const userElv = 24.575;
+const targetElvA = 500;
+const targetElvB = 6000;
 
 module.exports = {
   adjustedElev500,
@@ -73,4 +76,7 @@ module.exports = {
   arrA,
   arrB,
   arrOfObj,
+  userElv,
+  targetElvA,
+  targetElvB,
 };

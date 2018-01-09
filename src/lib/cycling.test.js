@@ -1,4 +1,5 @@
 const {
+  altitudeIndex,
   calcTssScore,
   calcTssScoreRound,
   difficultyIndex,
@@ -10,7 +11,19 @@ const {
   adjustedElev500,
   adjustedElev6000,
   arrOfObj,
+  userElv,
+  targetElvA,
+  targetElvB,
 } = require('./vars');
+
+describe('altitudeIndex', () => {
+  test('(targetElvA, userElv) - 0.25425', () => {
+    expect(altitudeIndex(targetElvA, userElv)).toEqual(0.25425);
+  });
+  test('(targetElvB, userElv) - 5.75425', () => {
+    expect(altitudeIndex(targetElvB, userElv)).toEqual(5.75425);
+  });
+});
 
 describe('percentFTPAcc', () => {
   test('250 elv - (user elevation of 25) ', () => {
@@ -27,6 +40,15 @@ describe('percentFTPNAcc', () => {
   });
   test('6000 elv - (user elevation of 25) ', () => {
     expect(percentFTPNAcc(adjustedElev6000)).toEqual(63.14491042539609);
+  });
+});
+
+describe('Combined: altIndex and percentFTPAcc', () => {
+  test('(targetElvA, userElv) - 99.34452477', () => {
+    expect(percentFTPAcc(altitudeIndex(targetElvA, userElv))).toEqual(99.34452477);
+  });
+  test('N(targetElvB, userElv) - 63.14546998894553', () => {
+    expect(percentFTPNAcc(altitudeIndex(targetElvB, userElv))).toEqual(63.14546998894553);
   });
 });
 
