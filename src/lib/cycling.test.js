@@ -1,7 +1,7 @@
 const {
   calcTssScore,
   calcTssScoreRound,
-  // TODO Needs test - difficultyIndex,
+  difficultyIndex,
   percentFTPAcc,
   percentFTPNAcc,
 } = require('./cycling');
@@ -45,5 +45,14 @@ describe('calcTssScoreRound', () => {
   });
   test('(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2) - set to 2 places > 494.27', () => {
     expect(calcTssScoreRound(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2)).toEqual(arrOfObj[3].tss);
+  });
+});
+
+describe('difficultyIndex', () => {
+  test('(arrOfObj[0].totalEleGain, arrOfObj[0].distance arrOfObj[0].ftp) - (user elevation of 25) ', () => {
+    expect(difficultyIndex(arrOfObj[0].totalEleGain, arrOfObj[0].distance)).toEqual(arrOfObj[0].diffI);
+  });
+  test('(calcTssScore(arrOfObj[1].totalEleGain, arrOfObj[1].distance, arrOfObj[1].ftp) (user elevation of 25) ', () => {
+    expect(difficultyIndex(arrOfObj[1].totalEleGain, arrOfObj[1].distance)).toEqual(arrOfObj[1].diffI);
   });
 });
