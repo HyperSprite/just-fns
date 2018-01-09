@@ -24,6 +24,13 @@ var secondsToTime = function secondsToTime(sec) {
   return nDays ? nDays + ' days ' + nHours + ':' + nMinutes : nHours + ':' + nMinutes;
 };
 
+var divideAndRound = function divideAndRound(divideThis, byThis, p) {
+  if (!isValid(divideThis) || !isValid(byThis || !byThis)) {
+    return 0;
+  }
+  return round(divideThis * 1 / (byThis * 1), p);
+};
+
 var getLastInArray = function getLastInArray(arr, arrType) {
   var item = void 0;
   if (arr && arr.length > 0 && arr[arr.length - 1][arrType] != null) {
@@ -32,16 +39,25 @@ var getLastInArray = function getLastInArray(arr, arrType) {
   return item;
 };
 
-var divideAndRound = function divideAndRound(divideThis, byThis, p) {
-  if (!isValid(divideThis) || !isValid(byThis || !byThis)) {
-    return 0;
+/**
+* Highest Consecutive Average per given elements
+*/
+var hiConsAvg = function hiConsAvg(arr, elmCount) {
+  var hiSoFar = 0;
+  for (var i = 0; i < arr.length - elmCount + 1; i++) {
+    // eslint-disable-line
+    var hiTest = arr.slice(i, i + elmCount).reduce(function (acc, elm) {
+      return acc += elm;
+    }, 0) / elmCount; // eslint-disable-line
+    hiSoFar = hiSoFar < hiTest ? hiTest : hiSoFar;
   }
-  return round(divideThis * 1 / (byThis * 1), p);
+  return hiSoFar;
 };
 
 module.exports = {
   divideAndRound: divideAndRound,
   getLastInArray: getLastInArray,
+  hiConsAvg: hiConsAvg,
   isValid: isValid,
   round: round,
   secondsToTime: secondsToTime

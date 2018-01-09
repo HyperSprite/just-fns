@@ -10,7 +10,6 @@ var _require = require('./helpers'),
 
 /**
 * Difficulty Index
-* TODO needs test
 */
 
 

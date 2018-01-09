@@ -11,7 +11,6 @@ const {
 
 /**
 * Difficulty Index
-* TODO needs test
 */
 const difficultyIndex = (totalEleGain, distance) => round(divideAndRound(totalEleGain, distance, 6) * 200, 2);
 

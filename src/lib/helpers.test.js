@@ -1,12 +1,15 @@
 const {
   divideAndRound,
   getLastInArray,
+  hiConsAvg,
   isValid,
   round,
   secondsToTime,
 } = require('./helpers');
 
 const {
+  arrA,
+  arrB,
   arrOfObj,
 } = require('./vars');
 
@@ -104,5 +107,24 @@ describe('divideAndRound', () => {
   });
   test('0, 25', () => {
     expect(divideAndRound(0, 25)).toEqual(0);
+  });
+});
+
+
+describe('hiConsAvg', () => {
+  test('(arrA, 3) to 42', () => {
+    expect(hiConsAvg(arrA, 3)).toEqual(42);
+  });
+  test('(arrA, 4) to 32', () => {
+    expect(hiConsAvg(arrA, 5)).toEqual(32);
+  });
+  test('(arrB, 3) to 47', () => {
+    expect(hiConsAvg(arrB, 3)).toEqual(47);
+  });
+  test('(arrB, 4) to 46.25', () => {
+    expect(hiConsAvg(arrB, 4)).toEqual(46.25);
+  });
+  test('hiConsAvg([2.55, 3, 3, 2.3, 2, 4], 3) to 2.85', () => {
+    expect(hiConsAvg([2.55, 3, 3, 2.3, 2, 4], 3)).toEqual(2.85);
   });
 });

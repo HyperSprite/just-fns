@@ -21,6 +21,13 @@ const secondsToTime = (sec) => {
   return nDays ? `${nDays} days ${nHours}:${nMinutes}` : `${nHours}:${nMinutes}`;
 };
 
+const divideAndRound = (divideThis, byThis, p) => {
+  if (!isValid(divideThis) || !isValid(byThis || !byThis)) {
+    return 0;
+  }
+  return round(((divideThis * 1) / (byThis * 1)), p);
+};
+
 const getLastInArray = (arr, arrType) => {
   let item;
   if (arr && arr.length > 0 && arr[arr.length - 1][arrType] != null) {
@@ -29,16 +36,22 @@ const getLastInArray = (arr, arrType) => {
   return item;
 };
 
-const divideAndRound = (divideThis, byThis, p) => {
-  if (!isValid(divideThis) || !isValid(byThis || !byThis)) {
-    return 0;
+/**
+* Highest Consecutive Average per given elements
+*/
+const hiConsAvg = (arr, elmCount) => {
+  let hiSoFar = 0;
+  for (let i = 0; i < arr.length - elmCount + 1; i++) { // eslint-disable-line
+    const hiTest = arr.slice(i, i + elmCount).reduce((acc, elm) => acc += elm, 0) / elmCount; // eslint-disable-line
+    hiSoFar = (hiSoFar < hiTest) ? hiTest : hiSoFar;
   }
-  return round(((divideThis * 1) / (byThis * 1)), p);
+  return hiSoFar;
 };
 
 module.exports = {
   divideAndRound,
   getLastInArray,
+  hiConsAvg,
   isValid,
   round,
   secondsToTime,

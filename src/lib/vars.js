@@ -2,6 +2,8 @@
 
 const adjustedElev500 = 0.500 - (24.55533409118652 * 0.01);
 const adjustedElev6000 = 6.000 - (24.55533409118652 * 0.01);
+const arrA = [31, 32, 34, 33, 22, 23, 25, 23, 11, 42, 42, 42, 13, 15, 12, 13];
+const arrB = [31, 32, 34, 33, 22, 23, 25, 23, 41, 43, 44, 47, 47, 47, 10, 10];
 const arrOfObj = [
   {
     weight: 63,
@@ -68,5 +70,7 @@ const arrOfObj = [
 module.exports = {
   adjustedElev500,
   adjustedElev6000,
+  arrA,
+  arrB,
   arrOfObj,
 };

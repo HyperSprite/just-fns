@@ -1,13 +1,14 @@
 {
   "name": "just-fns",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Just functions",
   "main": "dst/index.js",
   "scripts": {
     "test": "jest",
     "test-src": "jest src/* --watch",
     "lint": "eslint .",
-    "build": "babel src --out-dir dst"
+    "build": "babel src --out-dir dst",
+    "check": "npm run test && npm run lint && npm run build && git status"
   },
   "precommit": [
     "lint",

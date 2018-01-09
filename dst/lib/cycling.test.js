@@ -1,6 +1,7 @@
 var _require = require('./cycling'),
     calcTssScore = _require.calcTssScore,
     calcTssScoreRound = _require.calcTssScoreRound,
+    difficultyIndex = _require.difficultyIndex,
     percentFTPAcc = _require.percentFTPAcc,
     percentFTPNAcc = _require.percentFTPNAcc;
 
@@ -42,5 +43,14 @@ describe('calcTssScoreRound', function () {
   });
   test('(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2) - set to 2 places > 494.27', function () {
     expect(calcTssScoreRound(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2)).toEqual(arrOfObj[3].tss);
+  });
+});
+
+describe('difficultyIndex', function () {
+  test('(arrOfObj[0].totalEleGain, arrOfObj[0].distance arrOfObj[0].ftp) - (user elevation of 25) ', function () {
+    expect(difficultyIndex(arrOfObj[0].totalEleGain, arrOfObj[0].distance)).toEqual(arrOfObj[0].diffI);
+  });
+  test('(calcTssScore(arrOfObj[1].totalEleGain, arrOfObj[1].distance, arrOfObj[1].ftp) (user elevation of 25) ', function () {
+    expect(difficultyIndex(arrOfObj[1].totalEleGain, arrOfObj[1].distance)).toEqual(arrOfObj[1].diffI);
   });
 });

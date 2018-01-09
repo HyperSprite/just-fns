@@ -1,11 +1,14 @@
 var _require = require('./helpers'),
     divideAndRound = _require.divideAndRound,
     getLastInArray = _require.getLastInArray,
+    hiConsAvg = _require.hiConsAvg,
     isValid = _require.isValid,
     round = _require.round,
     secondsToTime = _require.secondsToTime;
 
 var _require2 = require('./vars'),
+    arrA = _require2.arrA,
+    arrB = _require2.arrB,
     arrOfObj = _require2.arrOfObj;
 
 describe('round number to X place', function () {
@@ -102,5 +105,23 @@ describe('divideAndRound', function () {
   });
   test('0, 25', function () {
     expect(divideAndRound(0, 25)).toEqual(0);
+  });
+});
+
+describe('hiConsAvg', function () {
+  test('(arrA, 3) to 42', function () {
+    expect(hiConsAvg(arrA, 3)).toEqual(42);
+  });
+  test('(arrA, 4) to 32', function () {
+    expect(hiConsAvg(arrA, 5)).toEqual(32);
+  });
+  test('(arrB, 3) to 47', function () {
+    expect(hiConsAvg(arrB, 3)).toEqual(47);
+  });
+  test('(arrB, 4) to 46.25', function () {
+    expect(hiConsAvg(arrB, 4)).toEqual(46.25);
+  });
+  test('hiConsAvg([2.55, 3, 3, 2.3, 2, 4], 3) to 2.85', function () {
+    expect(hiConsAvg([2.55, 3, 3, 2.3, 2, 4], 3)).toEqual(2.85);
   });
 });
