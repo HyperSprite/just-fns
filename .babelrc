@@ -1,5 +1,5 @@
-{"presets":
-  [
+{
+  "presets": [
     ["env", {
       "targets": {
         "chrome": 55,
@@ -8,5 +8,9 @@
       "useBuiltIns": true,
       "modules": false
     }]
+  ],
+  "ignore": [
+    "**/*.test.js",
+    "test.js"
   ]
 }

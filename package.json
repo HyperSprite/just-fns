@@ -8,7 +8,9 @@
     "test-src": "jest src/* --watch",
     "lint": "eslint .",
     "build": "babel src --out-dir dst",
-    "check": "npm run test && npm run lint && npm run build && git status"
+    "preversion": "npm run test && npm run lint",
+    "verson": "npm run build && git add -A dst",
+    "postversion": "git push && npm publish && rm -rf dst"
   },
   "precommit": [
     "lint",
@@ -46,7 +48,9 @@
     "measurement",
     "conversion",
     "ftp",
-    "watts"
+    "watts",
+    "fitness",
+    "bicycle"
   ],
   "author": "C. Dunavan",
   "repository": "https://github.com/HyperSprite/just-fns",

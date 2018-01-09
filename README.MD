@@ -88,7 +88,8 @@ Difficulty index is a new calculation based on Distance and Elevation. It lets a
 difficultyIndex(totalEleGain, distance)
 ```
 
-### These functions handle prepping data for display and are too specialized for reuse or their own good. They will be depreciated. Do not use them.
+### Do Not Use
+These functions handle prepping data for display and are too specialized for reuse or their own good. They will probably be depreciated.
 
 * statsConversions
 * mPrefLabel
