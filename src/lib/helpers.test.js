@@ -1,4 +1,6 @@
 const {
+  capAndSpace,
+  csvStringToArray,
   divideAndRound,
   getLastInArray,
   hiConsAvg,
@@ -12,6 +14,30 @@ const {
   arrB,
   arrOfObj,
 } = require('./vars');
+
+describe('capAndSpace converts the first position in a string to a capital letter', () => {
+  test('hello-world to Hello World', () => {
+    expect(capAndSpace('hello-world')).toEqual('Hello World');
+  });
+  test('123_hello_world to 123 Hello World', () => {
+    expect(capAndSpace('123_hello_world')).toEqual('123 Hello World');
+  });
+  test('35005 as Number returns null', () => {
+    expect(capAndSpace(35005)).toEqual(null);
+  });
+  test('"35005"', () => {
+    expect(capAndSpace('35005')).toEqual('35005');
+  });
+});
+
+describe('csvStringToArray takes a comma seperated string and returns array of strings', () => {
+  test('"1, 2, 3, 4, 5" to ["1", "2", "3", "4", "5"]', () => {
+    expect(csvStringToArray('1, 2, 3, 4, 5')).toEqual(['1', '2', '3', '4', '5']);
+  });
+  test('35005 as Number returns null', () => {
+    expect(csvStringToArray(35005)).toEqual(null);
+  });
+});
 
 describe('round number to X place', () => {
   test('1.5 - returns 2', () => {

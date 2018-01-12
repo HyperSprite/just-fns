@@ -13,12 +13,25 @@ const isValid = (val, type) => {
   }
 };
 
-const secondsToTime = (sec) => {
-  const nDays = Math.floor(sec / 86400);
-  const nHours = Math.floor((sec % 86400) / 3600);
-  const nMinutes = Math.floor(((sec % 86400) % 3600) / 60);
-  // const nSeconds = ((sec % 86400) % 3600) % 60;
-  return nDays ? `${nDays} days ${nHours}:${nMinutes}` : `${nHours}:${nMinutes}`;
+const capAndSpace = (str) => {
+  if (!isValid(str, 's')) {
+    return null;
+  }
+  return str
+    .replace(/[_-]/g, ' ')
+    .replace(/[a-z]/, f => f.toUpperCase())
+    .replace(/\s[a-z]/g, f => f.toUpperCase());
+};
+
+const csvStringToArray = (str) => {
+  if (!isValid(str, 's')) {
+    return null;
+  }
+  if (str.indexOf(',') === -1) {
+    return [str.trim()];
+  }
+  const tmpStr = str.replace(/,\s*/g, ',');
+  return tmpStr.split(',');
 };
 
 const divideAndRound = (divideThis, byThis, p) => {
@@ -48,7 +61,18 @@ const hiConsAvg = (arr, elmCount) => {
   return hiSoFar;
 };
 
+
+const secondsToTime = (sec) => {
+  const nDays = Math.floor(sec / 86400);
+  const nHours = Math.floor((sec % 86400) / 3600);
+  const nMinutes = Math.floor(((sec % 86400) % 3600) / 60);
+  // const nSeconds = ((sec % 86400) % 3600) % 60;
+  return nDays ? `${nDays} days ${nHours}:${nMinutes}` : `${nHours}:${nMinutes}`;
+};
+
 module.exports = {
+  capAndSpace,
+  csvStringToArray,
   divideAndRound,
   getLastInArray,
   hiConsAvg,

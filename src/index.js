@@ -8,6 +8,8 @@ const {
 } = require('./lib/cycling');
 
 const {
+  capAndSpace,
+  csvStringToArray,
   divideAndRound,
   getLastInArray,
   hiConsAvg,
@@ -45,6 +47,8 @@ module.exports = {
   calcTssScore,
   calcTssScoreRound,
   // lib/helpers
+  capAndSpace,
+  csvStringToArray,
   divideAndRound,
   getLastInArray,
   hiConsAvg,

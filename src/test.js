@@ -22,6 +22,18 @@ describe('isValid', () => {
   });
 });
 
+describe('capAndSpace converts the first position in a string to a capital letter', () => {
+  test('hello_world-again to Hello World Again', () => {
+    expect(justFns.capAndSpace('hello_world-again')).toEqual('Hello World Again');
+  });
+});
+
+describe('csvStringToArray takes a comma seperated string and returns array of strings', () => {
+  test('"1, 2, 3, 4, 5" to ["1", "2", "3", "4", "5"]', () => {
+    expect(justFns.csvStringToArray('patience, time, get it right')).toEqual(['patience', 'time', 'get it right']);
+  });
+});
+
 describe('secondsToTime takes unix seconds and returns H:mm', () => {
   test('5847708 to 67 days 16:21', () => {
     expect(justFns.secondsToTime(5847708)).toEqual('67 days 16:21');

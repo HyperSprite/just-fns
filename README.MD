@@ -12,6 +12,25 @@ The functions are broken down into three parts:
 
 ## Helpers
 
+### Capitalize and Space
+Takes strings with Spaces, Hyphens and Underscores and returns all as spaces. Then upper case the first character.
+Used to make Tag strings look nice.
+
+#### ```capAndSpace(string: String);```
+
+```js
+capAndSpace('123_hello-world'); // returns 123 Hello World
+```
+
+### CSV String to Array
+Takes a string of comma separated values and returns an array.
+Used for meta tag strings in Gatsbyjs
+#### ```csvStringToArray(string: String);```
+
+```js
+csvStringToArray("patience, time, get it right") // returns ["patience", "time", "get it right"]
+```
+
 ### Divide and Round
 
 Takes two numbers and divides and rounds the result.
@@ -141,10 +160,40 @@ Difficulty index is a new calculation based on Distance and Elevation. It lets a
 difficultyIndex(2000, 90000); // returns 4.44
 ```
 
-
-
 ### Do Not Use
 These functions handle prepping data for display and are too specialized for reuse or their own good. They will probably be depreciated.
 
 * statsConversions
 * mPrefLabel
+
+
+## Testing
+
+* ```npm test``` Runs all tests.
+* ```npm run test:src``` only runs the tests in src in watch mode.
+
+## Add, Commit, Version
+
+Since the branch must be clean to version and publish, we need to:
+
+* add
+* commit, which will:
+ * Run linting and tests because of pre-commit hooks.
+
+```bash
+git add .
+git commit -m 'some totally useful comment'
+```
+
+Next, we need to run:
+* version, which will:
+ * Rerun linting and tests
+ * Transpile the JavaScript with babel
+ * Git add the dst directory and package.json using the version number as the commit message
+ * Push the changes to Github
+ * Publish to npm
+ * Delete the dst directory
+
+```bash   
+npm version
+```
