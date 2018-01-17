@@ -5,7 +5,7 @@
   "main": "dst/index.js",
   "scripts": {
     "test": "jest",
-    "test-src": "jest src/* --watch",
+    "test:src": "jest src/* --watch",
     "lint": "eslint .",
     "build": "babel src --out-dir dst",
     "preversion": "npm run test && npm run lint",

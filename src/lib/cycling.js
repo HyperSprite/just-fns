@@ -33,12 +33,11 @@ const percentFTPNAcc = altiIndx => 0.178 * (Math.pow(altiIndx, 3)) - 1.43 * (Mat
 * elapsed_time, weighted_average_watts, ftp
 */
 const calcTssScore = (et, waw, ftp) => ((et * waw * (waw / ftp)) / (ftp * 3600)) * 100;
-const calcTssScoreRound = (et, waw, ftp, p) => round(calcTssScore(et, waw, ftp), p);
+
 
 module.exports = {
   altitudeIndex,
   calcTssScore,
-  calcTssScoreRound,
   difficultyIndex,
   percentFTPAcc,
   percentFTPNAcc,

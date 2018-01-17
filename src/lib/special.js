@@ -4,11 +4,11 @@ const {
 } = require('./helpers');
 
 const {
-  metersToFeetRound,
-  metersToMilesRound,
-  metersToKmRound,
-  mpsToKPHRound,
-  mpsToMPHRound,
+  metersToFeet,
+  metersToMiles,
+  metersToKm,
+  mpsToKPH,
+  mpsToMPH,
 } = require('./meas-conv');
 /**
 *
@@ -28,11 +28,11 @@ const statsConversions = (metric, yAxis, data, mPref) => {
       case 'time':
         return secondsToTime(data);
       case 'dst':
-        return mPref ? metersToMilesRound(data, 1) : metersToKmRound(data, 1);
+        return round((mPref ? metersToMiles(data) : metersToKm(data)), 1);
       case 'spd':
-        return mPref ? mpsToMPHRound(data, 1) : mpsToKPHRound(data, 1);
+        return round((mPref ? mpsToMPH(data) : mpsToKPH(data)), 1);
       case 'elev':
-        return mPref ? metersToFeetRound(data, 0) : round(data, 0);
+        return round((mPref ? metersToFeet(data) : data), 0);
       case 'cal':
       case 'kj':
       case 'tss':
@@ -46,9 +46,9 @@ const statsConversions = (metric, yAxis, data, mPref) => {
       case 'time':
         return secondsToTime;
       case 'dst':
-        return metersToMilesRound;
+        return (m, p) => round(metersToMiles(m), p);
       case 'elev':
-        return metersToFeetRound;
+        return (m, p) => round(metersToFeet(m), p);
       default:
         return null;
     }

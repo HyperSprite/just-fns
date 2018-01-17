@@ -1,7 +1,6 @@
 const {
   altitudeIndex,
   calcTssScore,
-  calcTssScoreRound,
   difficultyIndex,
   percentFTPAcc,
   percentFTPNAcc,
@@ -58,15 +57,6 @@ describe('calcTssScore', () => {
   });
   test('(calcTssScore(arrOfObj[1].et, arrOfObj[1].waw, arrOfObj[1].ftp) (user elevation of 25) ', () => {
     expect(calcTssScore(arrOfObj[1].et, arrOfObj[1].waw, arrOfObj[1].ftp)).toEqual(arrOfObj[1].tss);
-  });
-});
-
-describe('calcTssScoreRound', () => {
-  test('(arrOfObj[2].et, arrOfObj[2].waw arrOfObj[2].ftp) - defaults to 0 places > 184', () => {
-    expect(calcTssScoreRound(arrOfObj[2].et, arrOfObj[2].waw, arrOfObj[2].ftp)).toEqual(arrOfObj[2].tss);
-  });
-  test('(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2) - set to 2 places > 494.27', () => {
-    expect(calcTssScoreRound(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2)).toEqual(arrOfObj[3].tss);
   });
 });
 

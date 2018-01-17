@@ -195,5 +195,5 @@ Next, we need to run:
  * Delete the dst directory
 
 ```bash   
-npm version
+npm version <major | minor | patch>
 ```

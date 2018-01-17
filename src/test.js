@@ -71,21 +71,10 @@ describe('kgToPounds number to number', () => {
   });
 });
 
-describe('kgToPoundsRound number to number at X place', () => {
-  test('8kg, 3 returns 17.637lbs', () => {
-    expect(justFns.kgToPoundsRound(8, 3)).toEqual(17.637);
-  });
-});
 
 describe('metersToFeet', () => {
   test('10000 to 32808.4', () => {
     expect(justFns.metersToFeet(10000)).toEqual(32808.4);
-  });
-});
-
-describe('metersToFeetRound', () => {
-  test('10000 to 32808', () => {
-    expect(justFns.metersToFeetRound(10000, 0)).toEqual(32808);
   });
 });
 
@@ -95,15 +84,39 @@ describe('metersToMiles', () => {
   });
 });
 
+describe('metersToKm', () => {
+  test('1000 to 1', () => {
+    expect(justFns.metersToKm(1000)).toEqual(1);
+  });
+});
+
+describe('kphToMPS', () => {
+  test('65 to 18', () => {
+    expect(justFns.kphToMPSRound(65)).toEqual(18);
+  });
+});
+
+describe('mphToMPS', () => {
+  test('50 to 22', () => {
+    expect(justFns.mphToMPSRound(50)).toEqual(22);
+  });
+});
+
+describe('metersToFeetRound', () => {
+  test('10000 to 32808', () => {
+    expect(justFns.metersToFeetRound(10000, 0)).toEqual(32808);
+  });
+});
+
 describe('metersToMilesRound', () => {
   test('10000 to 6.21', () => {
     expect(justFns.metersToMilesRound(10000, 2)).toEqual(6.21);
   });
 });
 
-describe('metersToKm', () => {
-  test('1000 to 1', () => {
-    expect(justFns.metersToKm(1000)).toEqual(1);
+describe('kgToPoundsRound number to number at X place', () => {
+  test('8kg, 3 returns 17.637lbs', () => {
+    expect(justFns.kgToPoundsRound(8, 3)).toEqual(17.637);
   });
 });
 
@@ -150,6 +163,9 @@ describe('calcTssScore', () => {
 describe('calcTssScoreRound', () => {
   test('(arrOfObj[2].et, arrOfObj[2].waw arrOfObj[2].ftp) - defaults to 0 places > 184', () => {
     expect(justFns.calcTssScoreRound(arrOfObj[2].et, arrOfObj[2].waw, arrOfObj[2].ftp)).toEqual(arrOfObj[2].tss);
+  });
+  test('(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2) - set to 2 places > 494.27', () => {
+    expect(justFns.calcTssScoreRound(arrOfObj[3].et, arrOfObj[3].waw, arrOfObj[3].ftp, 2)).toEqual(arrOfObj[3].tss);
   });
 });
 

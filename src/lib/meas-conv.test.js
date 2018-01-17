@@ -1,16 +1,16 @@
 const {
   kgToPounds,
+  poundsToKg,
   metersToFeet,
+  ftToMeters,
   metersToMiles,
+  milesToMeters,
   metersToKm,
+  kmToMeters,
   mpsToKPH,
+  kphToMPS,
   mpsToMPH,
-  kgToPoundsRound,
-  metersToFeetRound,
-  metersToMilesRound,
-  metersToKmRound,
-  mpsToKPHRound,
-  mpsToMPHRound,
+  mphToMPS,
 } = require('./meas-conv');
 
 
@@ -23,12 +23,12 @@ describe('kgToPounds number to number', () => {
   });
 });
 
-describe('kgToPoundsRound number to number at X place', () => {
-  test('8kg, 3 returns 17.637lbs', () => {
-    expect(kgToPoundsRound(8, 3)).toEqual(17.637);
+describe('poundsToKg number to number', () => {
+  test('157.4lbs returns 71.3953808kg', () => {
+    expect(poundsToKg(157.4)).toEqual(71.3953808);
   });
-  test('321.6kg returns 709.005792lbs', () => {
-    expect(kgToPoundsRound(321.1, 2)).toEqual(707.9);
+  test('245lbs returns 111.13004kg', () => {
+    expect(poundsToKg(245)).toEqual(111.13004);
   });
 });
 
@@ -38,12 +38,9 @@ describe('metersToFeet', () => {
   });
 });
 
-describe('metersToFeetRound', () => {
-  test('10000 to 32808', () => {
-    expect(metersToFeetRound(10000, 0)).toEqual(32808);
-  });
-  test('10040 to 32939.63', () => {
-    expect(metersToFeetRound(10040, 2)).toEqual(32939.63);
+describe('ftToMeters', () => {
+  test('32808 to 9999.8784', () => {
+    expect(ftToMeters(32808)).toEqual(9999.8784);
   });
 });
 
@@ -56,14 +53,12 @@ describe('metersToMiles', () => {
   });
 });
 
-describe('metersToMilesRound', () => {
-  test('10000 to 6.21', () => {
-    expect(metersToMilesRound(10000, 2)).toEqual(6.21);
-  });
-  test('357274 to 222', () => {
-    expect(metersToMilesRound(357274, 0)).toEqual(222);
+describe('milesToMeters', () => {
+  test('100  to 160934', () => {
+    expect(milesToMeters(100)).toEqual(160934);
   });
 });
+
 
 describe('metersToKm', () => {
   test('1000 to 1', () => {
@@ -74,12 +69,9 @@ describe('metersToKm', () => {
   });
 });
 
-describe('metersToKmRound', () => {
-  test('123456789 to 123456.79', () => {
-    expect(metersToKmRound(123456789, 2)).toEqual(123456.79);
-  });
-  test('123456789 to 123457', () => {
-    expect(metersToKmRound(123456789, 0)).toEqual(123457);
+describe('kmToMeters', () => {
+  test('1 to 1000', () => {
+    expect(kmToMeters(1)).toEqual(1000);
   });
 });
 
@@ -92,14 +84,15 @@ describe('mpsToKPH', () => {
   });
 });
 
-describe('mpsToKPHRound', () => {
-  test('55.6 to 200.2', () => {
-    expect(mpsToKPHRound(55.6, 1)).toEqual(200.2);
+describe('kphToMPS', () => {
+  test('65 to 18.05555557', () => {
+    expect(kphToMPS(65)).toEqual(18.05555557);
   });
-  test('16 to 58', () => {
-    expect(mpsToKPHRound(16, 0)).toEqual(58);
+  test('100 to 27.7777778', () => {
+    expect(kphToMPS(100)).toEqual(27.7777778);
   });
 });
+
 
 describe('mpsToMPH', () => {
   test('50 to 111.845', () => {
@@ -110,11 +103,12 @@ describe('mpsToMPH', () => {
   });
 });
 
-describe('mpsToMPHRound', () => {
-  test('55.6 to 200.2', () => {
-    expect(mpsToMPHRound(55.6, 1)).toEqual(124.4);
+
+describe('mphToMPS', () => {
+  test('50 to 22.352', () => {
+    expect(mphToMPS(50)).toEqual(22.352);
   });
-  test('16 to 58', () => {
-    expect(mpsToMPHRound(16)).toEqual(36);
+  test('16 to 35.7904', () => {
+    expect(mphToMPS(16)).toEqual(7.15264);
   });
 });
