@@ -65,8 +65,7 @@ const hiConsAvg = (arr, elmCount) => {
 const secondsToTime = (sec) => {
   const nDays = Math.floor(sec / 86400);
   const nHours = Math.floor((sec % 86400) / 3600);
-  const nMinutes = Math.floor(((sec % 86400) % 3600) / 60);
-  // const nSeconds = ((sec % 86400) % 3600) % 60;
+  const nMinutes = (`0${Math.floor(((sec % 86400) % 3600) / 60)}`).slice(-2);
   return nDays ? `${nDays} days ${nHours}:${nMinutes}` : `${nHours}:${nMinutes}`;
 };
 

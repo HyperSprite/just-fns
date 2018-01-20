@@ -98,6 +98,12 @@ describe('secondsToTime takes unix seconds and returns H:mm', () => {
   test('35005 to 9:43', () => {
     expect(secondsToTime(35005)).toEqual('9:43');
   });
+  test('43200 to 12:00', () => {
+    expect(secondsToTime(43200)).toEqual('12:00');
+  });
+  test('172800 to 12:00', () => {
+    expect(secondsToTime(172800)).toEqual('2 days 0:00');
+  });
 });
 
 describe('getLastInArray', () => {
