@@ -1,6 +1,6 @@
 {
   "name": "just-fns",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Just functions",
   "main": "dst/index.js",
   "scripts": {
