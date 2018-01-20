@@ -9,8 +9,8 @@
     "lint": "eslint .",
     "build": "babel src --out-dir dst",
     "preversion": "npm run test && npm run lint",
-    "version": "npm run build && git add -A dst",
-    "postversion": "git push && npm publish && rm -rf dst"
+    "version": "npm run build",
+    "postversion": "npm publish && git push && && rm -rf dst"
   },
   "precommit": [
     "lint",
