@@ -10,7 +10,7 @@
     "build": "babel src --out-dir dst",
     "preversion": "npm run test && npm run lint",
     "version": "npm run build",
-    "postversion": "npm publish && git push && && rm -rf dst"
+    "postversion": "npm publish && git push && rm -rf dst"
   },
   "precommit": [
     "lint",
