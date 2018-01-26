@@ -161,7 +161,7 @@ difficultyIndex(2000, 90000); // returns 4.44
 ```
 
 ### Do Not Use
-These functions handle prepping data for display and are too specialized for reuse or their own good. They will probably be depreciated.
+These functions handle prepping data for display and are too specialized for reuse or their own good. They will probably be depreciated. Not covered by tests.
 
 * statsConversions
 * mPrefLabel
@@ -176,13 +176,11 @@ These functions handle prepping data for display and are too specialized for reu
 
 Since the branch must be clean to version and publish, we need to:
 
-* add
-* commit, which will:
+* add and commit, which will:
  * Run linting and tests because of pre-commit hooks.
 
 ```bash
-git add .
-git commit -m 'some totally useful comment'
+git commit -am 'some totally useful comment'
 ```
 
 Next, we need to run:

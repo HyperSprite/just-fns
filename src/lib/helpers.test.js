@@ -34,6 +34,9 @@ describe('csvStringToArray takes a comma seperated string and returns array of s
   test('"1, 2, 3, 4, 5" to ["1", "2", "3", "4", "5"]', () => {
     expect(csvStringToArray('1, 2, 3, 4, 5')).toEqual(['1', '2', '3', '4', '5']);
   });
+  test('"aString " to return "aString"', () => {
+    expect(csvStringToArray('aString ')).toEqual(['aString']);
+  });
   test('35005 as Number returns null', () => {
     expect(csvStringToArray(35005)).toEqual(null);
   });
@@ -104,14 +107,26 @@ describe('secondsToTime takes unix seconds and returns H:mm', () => {
   test('172800 to 12:00', () => {
     expect(secondsToTime(172800)).toEqual('2 days 0:00');
   });
+  test('172860 to 12:01', () => {
+    expect(secondsToTime(172860)).toEqual('2 days 0:01');
+  });
 });
 
 describe('getLastInArray', () => {
-  test('arrOfObj weight to 63.5', () => {
+  test('arrOfObj "weight" to 63.5', () => {
     expect(getLastInArray(arrOfObj, 'weight')).toEqual(63.5);
   });
-  test('arrOfObj ftp to 255', () => {
+  test('arrOfObj "ftp" to 255', () => {
     expect(getLastInArray(arrOfObj, 'ftp')).toEqual(255);
+  });
+  test('arrOfObj null to null', () => {
+    expect(getLastInArray(arrOfObj, null)).toEqual(null);
+  });
+  test('arrOfObj to null', () => {
+    expect(getLastInArray(arrOfObj)).toEqual(null);
+  });
+  test('arrOfObj "time" to null', () => {
+    expect(getLastInArray(arrOfObj, 'time')).toEqual(null);
   });
 });
 

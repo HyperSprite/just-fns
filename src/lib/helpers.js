@@ -42,7 +42,7 @@ const divideAndRound = (divideThis, byThis, p) => {
 };
 
 const getLastInArray = (arr, arrType) => {
-  let item;
+  let item = null;
   if (arr && arr.length > 0 && arr[arr.length - 1][arrType] != null) {
     item = arr[arr.length - 1][arrType];
   }

@@ -1,1 +1,3 @@
 dst/*
+**/test.*
+coverage/*

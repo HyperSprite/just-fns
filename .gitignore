@@ -2,6 +2,10 @@
 /node_modules
 /dst
 
+# Ignore test-related files
+/coverage.data
+/coverage
+
 npm-debug.log*
 
 todolist.md
