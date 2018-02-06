@@ -174,4 +174,25 @@ describe('hiConsAvg', () => {
   test('hiConsAvg([2.55, 3, 3, 2.3, 2, 4], 3) to 2.85', () => {
     expect(hiConsAvg([2.55, 3, 3, 2.3, 2, 4], 3)).toEqual(2.85);
   });
+  test('test null, null input', () => {
+    expect(hiConsAvg(null, null)).toBe(null);
+  });
+  test('test null, 5 input', () => {
+    expect(hiConsAvg(null, 5)).toBe(null);
+  });
+  test('test shorter array than elmCount', () => {
+    expect(hiConsAvg(arrA, 17)).toBe(null);
+  });
+  test('test elmCount is isInteger', () => {
+    expect(hiConsAvg(arrA, 10.5)).toBe(null);
+  });
+  test('test elmCount is isInteger', () => {
+    expect(hiConsAvg(arrA, 'a')).toBe(null);
+  });
+  test('test string in array', () => {
+    expect(hiConsAvg(['a', 'b', 3, 21, 2, 4], 3)).toEqual(9);
+  });
+  test('test all strings in array', () => {
+    expect(hiConsAvg(['a', 'b', 'c', 'd'], 3)).toEqual(0);
+  });
 });

@@ -61,7 +61,9 @@ getLastInArray(arr, 'weight'); // returns 168
 
 Finds the highest consecutive average of a specified number of elements in an array. For instance, could be used to find the highest heart rate over five seconds in a Stava Activity Stream.
 
-#### ```hiConsAvg(arr: Array, elements: Number)```
+If the arguments passed are not actionable, expect it to return ```null```.
+
+#### ```hiConsAvg(arr: Array, elements: Integer)```
 
 ```js
 hiConsAvg([2.55, 3, 3, 2.3, 2, 4], 3); // returns 2.85

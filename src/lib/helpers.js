@@ -53,6 +53,9 @@ const getLastInArray = (arr, arrType) => {
 * Highest Consecutive Average per given elements
 */
 const hiConsAvg = (arr, elmCount) => {
+  if (!arr || !arr.length || arr.length < elmCount || !Number.isInteger(elmCount)) {
+    return null;
+  }
   let hiSoFar = 0;
   for (let i = 0; i < arr.length - elmCount + 1; i++) { // eslint-disable-line
     const hiTest = arr.slice(i, i + elmCount).reduce((acc, elm) => acc += elm, 0) / elmCount; // eslint-disable-line
