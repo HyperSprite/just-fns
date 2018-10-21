@@ -62,29 +62,29 @@ const statsConversions = (metric, yAxis, data, mPref) => {
 const mPrefLabel = (metric, mPref) => {
   switch (metric) {
     case ('speedS'):
-      return mPref ?
-        { display: 'fps', help: 'Feet per Second' } :
-        { display: 'm/s', help: 'Meters / Second' };
+      return mPref
+        ? { display: 'fps', help: 'Feet per Second' }
+        : { display: 'm/s', help: 'Meters / Second' };
     case ('speedL'):
-      return mPref ?
-        { display: 'mph', help: 'Miles per Hour' } :
-        { display: 'km/h', help: 'Kilometers / Hour' };
+      return mPref
+        ? { display: 'mph', help: 'Miles per Hour' }
+        : { display: 'km/h', help: 'Kilometers / Hour' };
     case ('dstS'):
-      return mPref ?
-        { display: 'ft', help: 'Feet' } :
-        { display: 'm', help: 'Meters' };
+      return mPref
+        ? { display: 'ft', help: 'Feet' }
+        : { display: 'm', help: 'Meters' };
     case ('dstL'):
-      return mPref ?
-        { display: 'mi', help: 'Miles' } :
-        { display: 'km', help: 'Kilometers' };
+      return mPref
+        ? { display: 'mi', help: 'Miles' }
+        : { display: 'km', help: 'Kilometers' };
     case ('temp'):
-      return mPref ?
-        { display: '°F', help: 'Fahrenheit' } :
-        { display: '°C', help: 'Celsius' };
+      return mPref
+        ? { display: '°F', help: 'Fahrenheit' }
+        : { display: '°C', help: 'Celsius' };
     default:
-      return mPref ?
-        { display: 'Imperial', help: '' } :
-        { display: 'Metric', help: '' };
+      return mPref
+        ? { display: 'Imperial', help: '' }
+        : { display: 'Metric', help: '' };
   }
 };
 
